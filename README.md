@@ -86,36 +86,37 @@ Use the following steps to install Bootstrap 5 in the laravel 9 with Vite.
 </ol>
 
 ----------------------------------------------------------------
-Step 1: Install Laravel Project
+### Step 1: Install Laravel Project
 
 Installing a fresh new laravel application, so head over to the terminal, type the command, and create a new laravel app.
 
-composer create-project --prefer-dist laravel/laravel:^9.0 laravel9-bootstrap5-vite
+```composer create-project --prefer-dist laravel/laravel:^9.0 laravel9-bootstrap5-vite```
 
 or, if you have installed the Laravel Installer as a global composer dependency:
 
-laravel new laravel9-bootstrap5-vite
+```laravel new laravel9-bootstrap5-vite```
 
-Step 2: Install Laravel UI For Bootstrap 5
+### Step 2: Install Laravel UI For Bootstrap 5
 
 Next, you need to run the below command in your terminal
 
-composer require laravel/ui
+```composer require laravel/ui```
 
-Step 3: Setup Auth Scaffolding with Bootstrap 5
+### Step 3: Setup Auth Scaffolding with Bootstrap 5
 
-php artisan ui bootstrap --auth
+```php artisan ui bootstrap --auth```
 
- Step 4: Install NPM Dependencies
+ ### Step 4: Install NPM Dependencies
 
 Run the following command to install frontend dependencies:
 
-npm install
+```npm install```
 
-Step 5: Import vite.config.js Bootstrap 5 Path
+### Step 5: Import vite.config.js Bootstrap 5 Path
 
 First, you need to change vite.config.js and add the bootstrap 5 path & remove resources/css/app.css
 
+```
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import path from 'path'
@@ -132,11 +133,13 @@ export default defineConfig({
         }
     },
 });
+```
 
-Step 6: Update bootstrap.js
+### Step 6: Update bootstrap.js
 
 We need to use import instead of require.
 
+```
 import loadash from 'lodash'
 window._ = loadash
 
@@ -174,30 +177,38 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+```
 
-Step 7: Import Bootstrap 5 SCSS in JS Folder
+### Step 7: Import Bootstrap 5 SCSS in JS Folder
 
 Now you need to import bootstrap 5 SCSS path in you resources/js/app.js or resources/js/bootstrap.js
 
+```
 resources/js/app.js
 
 import './bootstrap';
 
 import '../sass/app.scss'
+```
 
-Step 8: Replace mix() with @vite Blade directive
+### Step 8: Replace mix() with @vite Blade directive
 
 When using Vite, you will need to use the @vite Blade directive instead of the mix() helper. remove mix helper and add @vite directive.
 
+```
 <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 <script src="{{ mix('js/app.js') }}" defer></script>
+```
 
 use @vite directive
 
+```
 @vite(['resources/js/app.js'])
+```
 
 views/layouts/app.blade
 
+```
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -278,19 +289,20 @@ views/layouts/app.blade
     </div>
 </body>
 </html>
+```
 
-Step 9: Running Vite Command to build Asset File
+### Step 9: Running Vite Command to build Asset File
 
 You need to npm run build command to create asset bootstrap 5.
 
-npm run build
+```npm run build```
 
-Step 10: Start the Local server
+### Step 10: Start the Local server
 
 Now open a new terminal and execute the following command from your terminal to run the development server.
 
-php artisan serve
+```php artisan serve```
 
-and navigate to the following link http://localhost:8000/
+and navigate to the following link **http://localhost:8000/**
 
 [Article](https://techvblogs.com/blog/how-to-install-bootstrap-5-in-laravel-9-with-vite)
